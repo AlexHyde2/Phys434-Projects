@@ -13087,7 +13087,7 @@ Partner: Max Wang<br></p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -13469,15 +13469,15 @@ Partner: Max Wang<br></p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>B.</strong> At the n = 1 interval, note how the pdf at x = 0 faces concave downwards (pdf'' is negative). This changes immediately with a second interval n = 2, which gives the pdf a more bell-like shape. And of course when you average over more measurement intervals, you end up with a pdf more focused around its mean. Nothing indicates however that any of these plots are exactly a Gaussian, since the n = 2 and n = 4 plots are still visibly asymmetric about its mean. This indicates to me that the convolving and averaging process only gradually turns a pdf into a Gaussian, it'll only fully be a Gaussian after an infinite amount of average convolutions.</p>
 <h1 id="Problem-3">Problem 3<a class="anchor-link" href="#Problem-3">&#182;</a></h1><p>Now I'll examine two situations where I'm trying to measure the infra-red counterpart signal of a Neutron star merger's gravitational wave signal. Here my equipment is an optical telescope with a CCD readout. The catch is that my CCD has a universal thermal background noise that for each pixel, resembling a zero-mean (due to flat-fielding) normal distribution such that the x-axis is the brightness of the pixel and the y-axis is the probability density of reading that brightness.</p>
-<h2 id="Version-1">Version 1<a class="anchor-link" href="#Version-1">&#182;</a></h2><p>In the first situation, LIGO reports a gravitational wave reading first, then NASA's SWIFT satellite reports the position of it precisely within one pixel of my own telescope's CCD. I also know that the thermal background noise's Gaussian width is 4 units (of brightness). Upon taking a measurement in SWIFT's specified pixel, I found a brightness of 20 units.</p>
-<p><strong>A.</strong> <em>Here I want to know, what is the probability that a measurement of 20 units or higher in one pixel is a result of the thermal background noise?</em> I'll report this probability as a sigma value.</p>
+<h2 id="Version-1">Version 1<a class="anchor-link" href="#Version-1">&#182;</a></h2><p>In the first situation, LIGO reports a gravitational wave reading first, then NASA's SWIFT satellite reports the position of it precisely within one pixel of my own telescope's CCD. I also know that the thermal background noise's Gaussian width is 4 units (of brightness). Upon taking a measurement in SWIFT's specified pixel, I found a brightness of 20.5 units.</p>
+<p><strong>A.</strong> <em>Here I want to know, what is the probability that a measurement of 20.5 units or higher in one pixel is a result of the thermal background noise?</em> I'll report this probability as a sigma value.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">trialGaussian</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -13487,7 +13487,7 @@ Partner: Max Wang<br></p>
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">P</span>
 
 <span class="n">x</span><span class="p">,</span><span class="n">P</span> <span class="o">=</span> <span class="n">trialGaussian</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">prob</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">P</span><span class="p">)</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">P</span><span class="p">[:</span><span class="mi">600</span><span class="p">])</span> <span class="c1"># x[600] = 20, the brightness of my signal</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">P</span><span class="p">)</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">P</span><span class="p">[:</span><span class="mi">605</span><span class="p">])</span> <span class="c1"># x[605] = 20.5, the brightness of my signal</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">prob</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sigma of a single pixel with 20 brightness = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sigma</span><span class="p">))</span>
 </pre></div>
@@ -13506,7 +13506,7 @@ Partner: Max Wang<br></p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Sigma of a single pixel with 20 brightness = 4.98762987323755
+<pre>Sigma of a single pixel with 20 brightness = 5.112633127369755
 </pre>
 </div>
 </div>
@@ -13518,7 +13518,7 @@ Partner: Max Wang<br></p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Traditionally, a sigma of 5 or higher is worthy of being called a discovery. I'd say that 4.988 sigma is close enough, so a measurement of 20 units in one pixel is a good discovery.<br></p>
+<p>Traditionally, a sigma of 5 or higher is worthy of being called a discovery, so measuring a brightness of 20.5 units or higher is a good find.<br></p>
 <h2 id="Version-2">Version 2<a class="anchor-link" href="#Version-2">&#182;</a></h2><p>In the second situation, LIGO still reports that gravitational wave reading, but there's no SWIFT report anymore. In other words, I took a 100x100 pixel image of the sky, but I don't know which pixel out of the 10k there are to look at.<br></p>
 <p><strong>B.</strong> <em>Considering that there're 10k pixel measurements in one image, what does the collective thermal background noise look like?</em></p>
 
@@ -13573,17 +13573,17 @@ Partner: Max Wang<br></p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Note that the y-axis is pixel density in this case. When you integrate the pdf, you now get a number of pixels.<br></p>
-<p><strong>C.</strong> In my photo, my brightest pixel read 20 units. <em>What's the probability that a single pixel among 10k pixels' reading of 20 units of brightness or higher came from the thermal background noise?</em></p>
+<p><strong>C.</strong> In my photo, my brightest pixel read 20.5 units. <em>What's the probability that a single pixel among 10k pixels' reading of 20.5 units of brightness or higher came from the thermal background noise?</em></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pixC</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span><span class="o">*</span><span class="mi">10000</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pixC</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">20.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span><span class="o">*</span><span class="mi">10000</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pixels with brightness 20 or above = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixC</span><span class="p">))</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pixC</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sigma of 20 brightness pixel = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sigma</span><span class="p">))</span>
@@ -13603,8 +13603,8 @@ Partner: Max Wang<br></p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Pixels with brightness 20 or above = 0.002866515719235352
-Sigma of 20 brightness pixel = 2.76267218285754
+<pre>Pixels with brightness 20 or above = 0.0014876887322046173
+Sigma of 20 brightness pixel = 2.970270379659667
 </pre>
 </div>
 </div>
@@ -13616,7 +13616,7 @@ Sigma of 20 brightness pixel = 2.76267218285754
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The sigma of getting a pixel among 10k of them to read 20 units or higher has dropped considerably down to 2.763 sigma, which is definitely not worthy of being a discovery.</p>
+<p>The sigma of getting a pixel among 10k of them to read 20 units or higher has dropped considerably down to 2.970 sigma, which is definitely not worthy of being a discovery.</p>
 <h1 id="Problem-4">Problem 4<a class="anchor-link" href="#Problem-4">&#182;</a></h1><p>Let's analyze the last problem's statistics further. Here I'll be looking at how much of an impact the number of pixels (generally speaking, trials) has on a single measurement's strength.<br></p>
 <p><strong>A.</strong> <em>What brightness do you need to read from 1 pixel in a 1 pixel thermal background to achieve a 5 Sigma signal?</em><br>
 <strong>B.</strong> <em>For 1 pixel in a 10k pixel thermal background?</em></p>
