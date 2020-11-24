@@ -11966,7 +11966,7 @@ Partner: Alexander Hyde</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Problem-3">Problem 3<a class="anchor-link" href="#Problem-3">&#182;</a></h2><p><b>a)</b> New I am going to simulate the injection of a range of signals, which will need to be represented by a 2D density histogram. I will first make another 1 million samples of random true signals between 150 to 500, and then I will add the signals to the background Poisson we made from problem 1 to simulate observed data with injection.</p>
+<h2 id="Problem-3">Problem 3<a class="anchor-link" href="#Problem-3">&#182;</a></h2><p><b>a)</b> Now I am going to simulate the injection of a range of signals, which will need to be represented by a 2D density histogram. I will first make another 1 million samples of random true signals between 150 to 500, and then I will add the signals to the background Poisson we made from problem 1 to simulate observed data with injection.</p>
 
 </div>
 </div>
@@ -12272,7 +12272,7 @@ The -1-Sigma uncertainity is located at x = 316.33851454409444
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><b>e)</b> In terms of symmetry, it still does look quite symmetric, but since we have less samples than the distribution from problem 2, I am going to try and compare the distance between mean and the ±1-Sigmas again using a ratio.</p>
+<p><b>e)</b> In terms of symmetry, it still does look quite symmetric, but we can see the ±1-Sigma lines aren't equally spaced away from the mean. Since we also have less samples than the distribution from problem 2, I am going to try and compare the distance between mean and the ±1-Sigmas again using a ratio.</p>
 
 </div>
 </div>
@@ -12312,7 +12312,7 @@ The -1-Sigma uncertainity is located at x = 316.33851454409444
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The ratio seems quite off from 1, so I would say it isn't significant enough to indicate great symmetry. Afterall, this is a Poisson distribution, and even if sample sizes approach infinity, the distrubition would only tend to Gaussian, so the ratio will not be perfectly 1.</p>
+<p>The ratio seems quite off from 1, so I would say it isn't significant enough to indicate great symmetry. Afterall, this is a Poisson distribution, so we can't expect Gaussian level of symmetry. Even if the sample size increases, it would only result in a smoother distribution as dictated by the central limit theorm. Only as the mean approaches infinity can we expect a Gaussian level of symmetry.</p>
 <p>In terms of bias, we can see that the mean is around 100 less than the observed signal of 420. If we interpret this from the observation standpoint, then we can say the same thing here as we did in problem 2: our observations are biased to be around 100 units higher than the true signal. And form the incoming signal standpoint, the incoming signal will be read about 100 units higher than itself.</p>
 
 </div>
